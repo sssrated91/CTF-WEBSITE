@@ -1,0 +1,134 @@
+# ╔══════════════════════════════════════════════════════════╗
+# ║         CTF — Crypto To Fiat  |  Setup Guide            ║
+# ╚══════════════════════════════════════════════════════════╝
+
+HOW TO RUN YOUR CTF WEBSITE WITH LOGIN
+========================================
+
+STEP 1 — INSTALL PYTHON
+─────────────────────────
+1. Go to https://python.org
+2. Click Download → Download Python 3.x.x
+3. Run the installer
+   ⚠️  IMPORTANT: Check the box that says "Add Python to PATH"
+4. Click Install Now
+5. Done!
+
+To verify, open a terminal and type:
+   python --version
+You should see something like: Python 3.12.0
+
+
+STEP 2 — SET UP YOUR PROJECT FOLDER
+──────────────────────────────────────
+Your CTF-Website folder should look like this:
+
+CTF-Website/
+├── app.py                ← Flask server (the brain)
+├── requirements.txt      ← Lists Flask as a dependency
+├── SETUP.txt             ← This file
+└── templates/
+    ├── login.html        ← Login & signup page
+    └── index.html        ← Main CTF app
+
+
+STEP 3 — OPEN TERMINAL IN YOUR FOLDER
+───────────────────────────────────────
+Windows:
+  - Open your CTF-Website folder in File Explorer
+  - Click the address bar at the top
+  - Type: cmd
+  - Press Enter (terminal opens inside your folder)
+
+Mac:
+  - Right click your CTF-Website folder
+  - Click "New Terminal at Folder"
+
+
+STEP 4 — INSTALL FLASK
+────────────────────────
+In the terminal, type exactly:
+
+   pip install flask
+
+Wait for it to finish. You'll see "Successfully installed flask"
+
+
+STEP 5 — RUN THE SERVER
+─────────────────────────
+In the same terminal, type:
+
+   python app.py
+
+You should see:
+   ✅ Database ready.
+   🚀 CTF server running at http://localhost:5000
+    * Running on http://127.0.0.1:5000
+
+
+STEP 6 — OPEN YOUR WEBSITE
+─────────────────────────────
+Open your browser and go to:
+
+   http://localhost:5000
+
+You'll see the CTF login page! 🎉
+
+
+STEP 7 — CREATE AN ACCOUNT & USE IT
+──────────────────────────────────────
+1. Click "Sign Up"
+2. Enter a username, email, and password
+3. Click "Create Account"
+4. You're automatically logged in and taken to the CTF app
+5. Your portfolio is saved to the database
+6. Every user has their own separate portfolio
+
+
+TO STOP THE SERVER
+────────────────────
+Press Ctrl + C in the terminal
+
+
+TO START AGAIN NEXT TIME
+──────────────────────────
+Just open terminal in the CTF-Website folder and run:
+   python app.py
+Then go to http://localhost:5000
+
+
+══════════════════════════════════════════════════════════════
+WHAT'S IN THE DATABASE (ctf_database.db)
+══════════════════════════════════════════════════════════════
+A file called ctf_database.db is automatically created in your
+CTF-Website folder when you first run app.py. It stores:
+
+• users table:
+  - id, username, email, password (hashed/encrypted), created_at
+
+• portfolio table:
+  - user_id, coin_id, coin symbol, coin name, amount held
+
+Passwords are NEVER stored as plain text.
+They are hashed using SHA-256 before saving.
+
+══════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+══════════════════════════════════════════════════════════════
+
+"python is not recognized"
+→ Python is not installed or not added to PATH
+→ Reinstall Python and check "Add Python to PATH"
+
+"pip is not recognized"
+→ Try: python -m pip install flask
+
+"Address already in use"
+→ Another program is using port 5000
+→ Change port in app.py: app.run(port=5001)
+→ Then visit http://localhost:5001
+
+"ModuleNotFoundError: No module named flask"
+→ Run: pip install flask
+
+══════════════════════════════════════════════════════════════
